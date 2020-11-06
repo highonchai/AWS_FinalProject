@@ -50,14 +50,23 @@ foreign key (user_id) references users (user_id) on delete cascade on update cas
 foreign key (product_id) references products (product_id) on delete cascade on update cascade
 )
 
---Products Table (CREATE and INSERT from DBEAVER)
+
+--Create the Products Table
 CREATE TABLE products
 (
 product_id serial primary key,
 product_name text not null,
 product_color text not null,
-product_description text not null,
+product_description text not null
 )
+
+-- Inserts items into the products table
+INSERT INTO products (product_name, product_color, product_description) VALUES 
+("Sweater", "Green", "Sweater with School logo"),
+("School Flag", "Red", "Flag with schoole emblem")
+
+-- Selects ALL from products Table
+SELECT * FROM products
 
 --User Table ()
 CREATE TABLE users
