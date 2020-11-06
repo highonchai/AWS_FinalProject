@@ -68,7 +68,7 @@ INSERT INTO products (product_name, product_color, product_description) VALUES
 -- Selects ALL from products Table
 SELECT * FROM products
 
---User Table ()
+--Create users table
 CREATE TABLE users
 (
 user_id serial primary key,
@@ -80,6 +80,14 @@ user_password text not null,
 user_role text not null, --Teacher, Student, Admin, etc
 user_department text not null
 )
+
+-- Insert users into users table
+INSERT INTO users (user_firstname, user_lastname, user_phone, user_email, user_password, user_role, user_department) VALUES
+("Johnny", "AppleSeed", "444-444-1234", "johnny.appleseed@gmail.com", "passAdmin", "Admin", "Staff"),
+("Emily", "Gold", "222-222-1234", "emily.gold@gmail.com", "passTeacher", "Teacher", "Staff"),
+("Violet", "Waters", "123-123-1234", "violet.waters@gmail.com", "passTeacher", "Teacher", "Staff"),
+("Trevor", "Stump", "111-111-1234", "trevor.stump@gmail.com", "passStudent", "Student", "Student"),
+("Hannah", "Stump", "110-110-1234", "hannah.stump@gmail.com", "passStudent", "Student", "Student")
 
 --Enrollment Table ()
 CREATE TABLE enrollments
