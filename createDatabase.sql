@@ -13,8 +13,6 @@
 --PAGE
 -- python function that connects to the database and then displays info
 -- SQL QUERY (view, update, delete, etc)
--- 
-
 
 ---MENU for ADMIN
 -- User Profile
