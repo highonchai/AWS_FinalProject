@@ -13,8 +13,6 @@
 --PAGE
 -- python function that connects to the database and then displays info
 -- SQL QUERY (view, update, delete, etc)
--- 
-
 
 ---MENU for ADMIN
 -- User Profile
@@ -52,16 +50,25 @@ foreign key (user_id) references users (user_id) on delete cascade on update cas
 foreign key (product_id) references products (product_id) on delete cascade on update cascade
 )
 
---Products Table (CREATE and INSERT from DBEAVER)
+
+--Create the Products Table
 CREATE TABLE products
 (
 product_id serial primary key,
 product_name text not null,
 product_color text not null,
-product_description text not null,
+product_description text not null
 )
 
---User Table ()
+-- Inserts items into the products table
+INSERT INTO products (product_name, product_color, product_description) VALUES 
+("Sweater", "Green", "Sweater with School logo"),
+("School Flag", "Red", "Flag with schoole emblem")
+
+-- Selects ALL from products Table
+SELECT * FROM products
+
+--Create users table
 CREATE TABLE users
 (
 user_id serial primary key,
@@ -73,6 +80,14 @@ user_password text not null,
 user_role text not null, --Teacher, Student, Admin, etc
 user_department text not null
 )
+
+-- Insert users into users table
+INSERT INTO users (user_firstname, user_lastname, user_phone, user_email, user_password, user_role, user_department) VALUES
+("Johnny", "AppleSeed", "444-444-1234", "johnny.appleseed@gmail.com", "passAdmin", "Admin", "Staff"),
+("Emily", "Gold", "222-222-1234", "emily.gold@gmail.com", "passTeacher", "Teacher", "Staff"),
+("Violet", "Waters", "123-123-1234", "violet.waters@gmail.com", "passTeacher", "Teacher", "Staff"),
+("Trevor", "Stump", "111-111-1234", "trevor.stump@gmail.com", "passStudent", "Student", "Student"),
+("Hannah", "Stump", "110-110-1234", "hannah.stump@gmail.com", "passStudent", "Student", "Student")
 
 --Enrollment Table ()
 CREATE TABLE enrollments
