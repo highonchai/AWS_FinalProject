@@ -61,10 +61,29 @@ product_description text not null
 )
 
 -- Inserts items into the products table
-INSERT INTO products (product_name, product_color, product_description) VALUES 
-("Sweater", "Green", "Sweater with School logo"),
-("School Flag", "Red", "Flag with schoole emblem"),
-("Textbook 1", "green")
+INSERT INTO products (product_name, product_price, product_description) VALUES 
+('College rule notebook', 4.99, 'Five Star College notebook 100 pages'),
+('Oxford ruled index cards',  3.99, '100 pack wide ruled'),
+('Pens', 2.99, 'Fine tip black 2 pack'),
+('Colored Pencils', 1.99, '12 pack'),
+('Notebook Paper', 2.99, '120 page pack wide rule'),
+('Microsoft - Surface Studio 2', 3500, '28 Touch-Screen All-In-One Intel Core i7 16GB 1TB SSD' ),
+('Microsoft - Surface Studio 2', 4500, '28 Touch-Screen All-In-One Intel Core i7 32GB 1TB SSD' ),
+('Apple - 27" iMac Pro', 4100, 'iMac Pro with Retina 5K display 32GB Memory - 1TB SSD - Black' ),
+('Apple - MacBook Pro - 16', 2100, 'Display with Touch Bar Intel Core i7 16GB Memory 512GB SSD'),
+('Grapic Tee', 24.99, 'Uni-sexed XL'),
+('Sweatshirt', 26.99, 'Uni-sexed XL'),
+('Logo Socks', 5.99, 'Uni-sexed XL'),
+('Grapic Tee', 24.99, 'Uni-sexed Large'),
+('Sweatshirt', 26.99, 'Uni-sexed Large'),
+('Logo Socks', 5.99, 'Uni-sexed Large'),
+('Grapic Tee', 24.99, 'Uni-sexed Medium'),
+('Sweatshirt', 26.99, 'Uni-sexed Medium'),
+('Logo Socks', 5.99, 'Uni-sexed Medium'),
+('Grapic Tee', 24.99, 'Uni-sexed Small'),
+('Sweatshirt', 26.99, 'Uni-sexed Small'),
+('Logo Socks', 5.99 , 'Uni-sexed Small')
+
 
 -- Selects ALL from products Table
 SELECT * FROM products
