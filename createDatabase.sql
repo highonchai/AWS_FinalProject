@@ -63,7 +63,8 @@ product_description text not null
 -- Inserts items into the products table
 INSERT INTO products (product_name, product_color, product_description) VALUES 
 ("Sweater", "Green", "Sweater with School logo"),
-("School Flag", "Red", "Flag with schoole emblem")
+("School Flag", "Red", "Flag with schoole emblem"),
+("Textbook 1", "green")
 
 -- Selects ALL from products Table
 SELECT * FROM products
@@ -83,7 +84,7 @@ user_department text not null
 
 -- Insert users into users table
 INSERT INTO users (user_firstname, user_lastname, user_phone, user_email, user_password, user_role, user_department) VALUES
-("Johnny", "AppleSeed", "444-444-1234", "johnny.appleseed@gmail.com", "passAdmin", "Admin", "Staff"),
+("Johnny", "AppleSeed", "444-444-1234", "johnny.appleseed@gmail.com", "passAdmin", "Principal", "Admin"),
 ("Emily", "Gold", "222-222-1234", "emily.gold@gmail.com", "passTeacher", "Teacher", "Staff"),
 ("Violet", "Waters", "123-123-1234", "violet.waters@gmail.com", "passTeacher", "Teacher", "Staff"),
 ("Trevor", "Stump", "111-111-1234", "trevor.stump@gmail.com", "passStudent", "Student", "Student"),
@@ -108,4 +109,7 @@ course_name text not null,
 course_size int not null,
 course_instructor text not null
 )
+
+INSERT INTO courses (course_name, course_size, course_instructor) VALUES
+()
 
