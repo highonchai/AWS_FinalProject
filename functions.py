@@ -3,7 +3,7 @@ from os import system
 import mysql.connector
 from mysql.connector import connect
 import connection
-from connection import conn, connSQL
+from connection import conn
 import colorama
 from colorama import Fore, Style
 from datetime import date
@@ -13,26 +13,40 @@ from datetime import date
 
 def displayAllEnrollmentsTable():
     system('clear')
-    tableName1 = "enrollments"
+    tableName1 = 'enrollments'
+    tableName2 = 'users'
+    tableName3 = 'courses'
     try:
-        cursor = connSQL.cursor()
+        cursor = conn.cursor()
         cursor.execute(
-            f"SELECT * FROM {tableName1} ORDER BY user_id"
+            f'''
+            SELECT e.enrollment_id as 'Enrollment ID', 
+            CONCAT(u.user_firstname, ' ', u.user_lastname) as 'Student Name', 
+            e.user_id as 'Student ID', 
+            c.course_name as 'Course Name', 
+            c.course_id as 'Course ID',
+            e.enrollment_grade as 'Student Grade'
+            FROM {tableName1} e
+            LEFT JOIN {tableName2} u on u.user_id = e.user_id
+            LEFT JOIN {tableName3} c on c.course_id = e.course_id
+            ORDER BY u.user_lastname, u.user_firstname
+            '''
         )
         print(Style.RESET_ALL)
-         print(Fore.GREEN, 'ENROLLMENT INFO: ')
-          print(Style.RESET_ALL)
-           for row in cursor:
-                print(f'''{Fore.YELLOW}
-                Enrollment ID: .....................{Style.RESET_ALL}{Fore.CYAN}{row[0]}{Fore.YELLOW}
-                Enrollment Name: ...................{Style.RESET_ALL}{Fore.CYAN}{row[1]}{Fore.YELLOW}
-                Product Cost: ...................{Style.RESET_ALL}{Fore.CYAN}{row[2]}{Fore.YELLOW}
-                Product Description: ............{Style.RESET_ALL}{Fore.CYAN}{row[3]}{Fore.YELLOW}
-                ''')
-            cursor.close()
-            conn.close()
-        else:
-            print('Sorry! Your database is empty')
+        print(Fore.GREEN, 'ENROLLMENT INFO: ')
+        print(Style.RESET_ALL)
+        for row in cursor:
+            print(f'''{Fore.YELLOW}
+            Enrollment ID: .....................{Style.RESET_ALL}{Fore.CYAN}{row[0]}{Fore.YELLOW}
+            Enrollment Name: ...................{Style.RESET_ALL}{Fore.CYAN}{row[1]}{Fore.YELLOW}
+            Product Cost: ...................{Style.RESET_ALL}{Fore.CYAN}{row[2]}{Fore.YELLOW}
+            Product Description: ............{Style.RESET_ALL}{Fore.CYAN}{row[3]}{Fore.YELLOW}
+            ''')
+        cursor.close()
+        conn.close()
 
-    except(Exception, mysql.connector..Error) as error:
+    except(Exception, mysql.connector.Error) as error:
         print('Error while fetching data from database', error)
+
+
+displayAllEnrollmentsTable()
