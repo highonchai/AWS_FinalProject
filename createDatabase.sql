@@ -122,7 +122,7 @@ CREATE TABLE enrollments
 enrollment_id int primary key AUTO_INCREMENT,
 user_id int not null,
 course_id int not null,
-enrollment_grade decimal(3,2),
+enrollment_grade int,
 foreign key (user_id) references users(user_id) on delete cascade,
 foreign key (course_id) references courses(course_id) on delete cascade
 )
@@ -144,7 +144,7 @@ course_instructorid int not null,
 foreign key (course_instructorid) references users(user_id) on delete cascade
 )
 
-INSERT INTO courses (course_name, course_size, course_instructor) VALUES
+INSERT INTO courses (course_name, course_size, course_instructorid) VALUES
 ("History", 15, 2),
 ("Math", 15, 3),
 ("Science", 15, 3)
