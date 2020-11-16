@@ -25,22 +25,23 @@ def displayAllEnrollmentsTable():
             e.user_id as 'Student ID', 
             c.course_name as 'Course Name', 
             c.course_id as 'Course ID',
-            e.enrollment_grade as 'Student Grade'
+            e.enrollment_grade as 'Student Grade' 
             FROM {tableName1} e
             LEFT JOIN {tableName2} u on u.user_id = e.user_id
             LEFT JOIN {tableName3} c on c.course_id = e.course_id
             ORDER BY u.user_lastname, u.user_firstname
-            '''
-        )
+            ''')
         print(Style.RESET_ALL)
         print(Fore.GREEN, 'ENROLLMENT INFO: ')
         print(Style.RESET_ALL)
         for row in cursor:
             print(f'''{Fore.YELLOW}
+            Student ID: ........................{Style.RESET_ALL}{Fore.CYAN}{row[2]}{Fore.YELLOW}
+            Student Name: ......................{Style.RESET_ALL}{Fore.CYAN}{row[1]}{Fore.YELLOW}
             Enrollment ID: .....................{Style.RESET_ALL}{Fore.CYAN}{row[0]}{Fore.YELLOW}
-            Enrollment Name: ...................{Style.RESET_ALL}{Fore.CYAN}{row[1]}{Fore.YELLOW}
-            Product Cost: ...................{Style.RESET_ALL}{Fore.CYAN}{row[2]}{Fore.YELLOW}
-            Product Description: ............{Style.RESET_ALL}{Fore.CYAN}{row[3]}{Fore.YELLOW}
+            Course Name: .......................{Style.RESET_ALL}{Fore.CYAN}{row[3]}{Fore.YELLOW}
+            Course ID: .........................{Style.RESET_ALL}{Fore.CYAN}{row[4]}{Fore.YELLOW}
+            Student Grade: .....................{Style.RESET_ALL}{Fore.CYAN}{row[5]}{Fore.YELLOW}
             ''')
         cursor.close()
         conn.close()
