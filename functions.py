@@ -49,8 +49,6 @@ def displayAllEnrollmentsTable():
     except(Exception, mysql.connector.Error) as error:
         print('Error while fetching data from database', error)
 
-# displayAllEnrollmentsTable()
-
 
 def displayEnrollmentsByStudentTable(student):
     system('clear')
@@ -91,4 +89,5 @@ def displayEnrollmentsByStudentTable(student):
         print('Error while fetching data from database', error)
 
 
-displayEnrollmentsByStudentTable(4)
+# displayAllEnrollmentsTable()
+# displayEnrollmentsByStudentTable(4)
