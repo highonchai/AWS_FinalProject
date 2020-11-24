@@ -93,12 +93,14 @@ def displayEnrollmentsByStudentTable(student):
 def displayUsers():
     try:
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM users')
+        cursor.execute(
+            'SELECT user_id, user_firstname, user_lastname, user_password FROM users')
         for row in cursor:
             print(f'''
             User ID:....... {row[0]}
-            Username....... {row[1]}
-            Password: ..... {row[2]}
+            Username....... {row[2]}, {row[1]}
+            Password: ..... {row[3]}
+
             ''')
         cursor.close()
         conn.close()
@@ -107,14 +109,16 @@ def displayUsers():
 
 
 def addUsers():
-    username = str(input('Enter username >> '))
+    email = str(input('Enter email >> '))
+    user_firstname = str(input('Enter First Name >> '))
+    user_lastname = str(input('Enter Last Name >> '))
     password = input("Enter password >> ")
     hashed = (bcrypt.hashpw(password.encode("utf-8"),
                             bcrypt.gensalt())).decode("utf-8")
     try:
         cursor = conn.cursor()
         cursor.execute(
-            f"INSERT INTO users (user_name, pass) values ('{username}','{hashed}')")
+            f"INSERT INTO users (user_email, user_password, user_firstname, user_lastname) values ('{email}','{hashed}', '{user_firstname}','{user_lastname}')")
         conn.commit()
         cursor.close()
         conn.close()
@@ -122,30 +126,31 @@ def addUsers():
         print("Error while fetching MySQL database", error)
 
 
-def authenticateUser(user, passwd):
+def authenticateUser(email, passwd):
     system('clear')
     try:
         cursor = conn.cursor()
-        cursor.execute(f"SELECT * FROM users WHERE user_name = '{user}'")
+        cursor.execute(
+            f"SELECT user_email, user_password FROM users WHERE user_email = '{email}'")
         row = cursor.fetchone()
         if(row):
-            u = row[1]
-            p = row[2]
-            if (u.lower() == user.lower() and bcrypt.checkpw(passwd, p.encode("utf-8"))):
-                print(f'User {user} has been successfully authenticated')
+            u = row[0]
+            p = row[1]
+            if (u.lower() == email.lower() and bcrypt.checkpw(passwd, p.encode("utf-8"))):
+                print(f'User {email} has been successfully authenticated')
             else:
-                print(f'Error authenticating user {user}. Please try again')
+                print(f'Error authenticating user {email}. Please try again')
         else:
             print('No records in your database')
         cursor.close()
         conn.close()
     except(Exception, mysql.connector.Error):
-        print(f"Error authenticating user {user}")
+        print(f"Error authenticating user {email}")
 
 
-# username = str(input('Enter username >> '))
-# password = input('Enter password >> ').encode("utf-8")
-# authenticateUser(username, password)
+email = str(input('Enter email >> '))
+password = input('Enter password >> ').encode("utf-8")
+authenticateUser(email, password)
 
 # displayUsers()
 # addUsers()

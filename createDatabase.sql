@@ -96,15 +96,16 @@ CREATE TABLE users
 user_id int primary key AUTO_INCREMENT,
 user_firstname text not null,
 user_lastname text not null,
-user_phone text not null,
+user_phone text,
 user_email text not null,
 user_password text not null,
-user_role text not null,
-user_department text not null
+user_role text,
+user_department text
 )
 --Teacher, Student, Admin, etc
 
 drop table users
+select * from users
 
 -- Insert users into users table
 INSERT INTO users (user_firstname, user_lastname, user_phone, user_email, user_password, user_role, user_department) VALUES
